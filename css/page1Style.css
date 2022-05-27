@@ -68,14 +68,31 @@
 }
 
 .conteinerSlider{
-    padding: 0;
-    margin: 0;
+    position: absolute;
     box-sizing: border-box;
+    width: 400px;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
 }
 
 .conteinerSlider .slider{
     border: 1px solid white;
-    transform: translate(-50%, -50%);
-    height: 40px;
+    height: 150px;
     padding: 10px;
+}
+
+.conteinerSlider .arrows{
+    position: absolute;
+    top: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.conteinerSlider .slider .image .img{
+    width: 280px;
 }
