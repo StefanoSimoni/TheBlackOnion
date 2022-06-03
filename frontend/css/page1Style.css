@@ -15,8 +15,8 @@
     outline: none;
     color: #ecf0f1;
     font-size: 16px;
-    line-height: 30px;
-    width: 240px;
+    line-height: 32px;
+    width: 270px;
     padding-left: 10px;
 }
 
@@ -26,10 +26,12 @@
 }
 
 .searcher .searchButton {
+    position: absolute;
     color: #ecf0f1;
     float: right;
     font-size: 32px;
-    top: 3%;
+    top: 23%;
+    left: 85%;
 }
 
 .logo .logo {
@@ -152,7 +154,7 @@ li {
 
 .contCarousel .carousel {
     position: relative;
-    padding-top: 75%;
+    padding-top: 63%;
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
 }
@@ -219,49 +221,35 @@ li {
 }
 
 .contCarousel .carousel::before,
+.contCarousel .carouselPrev {
+    left: -1rem;
+}
+
 .contCarousel .carousel::after,
-.carouselPrev,
-.carouselNext {
+.contCarousel .carouselNext {
+    right: -1rem;
+}
+
+.contCarousel .carousel::before,
+.contCarousel .carousel::after,
+.contCarousel .carouselPrev,
+.contCarousel .carouselNext {
     position: absolute;
     top: 0;
-    margin-top: 37.5%;
+    margin-top: 35%;
     width: 4rem;
     height: 4rem;
     transform: translateY(-50%);
     border-radius: 50%;
-    font-size: 0;
+    font-size: 0px;
     outline: 0;
-}
-
-.carousel::before,
-.carouselPrev {
-    left: -1rem;
-}
-
-.carousel::after,
-.carouselNext {
-    right: -1rem;
-}
-
-.carousel::before,
-.carousel::after {
     content: '';
     z-index: 1;
-    background-color: #333;
     background-size: 1.5rem 1.5rem;
     background-repeat: no-repeat;
     background-position: center center;
-    color: #fff;
     font-size: 2.5rem;
     line-height: 4rem;
     text-align: center;
     pointer-events: none;
-}
-
-.carousel::before {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
-}
-
-.carousel::after {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
 }
