@@ -15,8 +15,8 @@
     outline: none;
     color: #ecf0f1;
     font-size: 16px;
-    line-height: 30px;
-    width: 240px;
+    line-height: 32px;
+    width: 270px;
     padding-left: 10px;
 }
 
@@ -26,10 +26,12 @@
 }
 
 .searcher .searchButton {
+    position: absolute;
     color: #ecf0f1;
     float: right;
     font-size: 32px;
-    top: 3%;
+    top: 23%;
+    left: 85%;
 }
 
 .logo .logo {
@@ -123,31 +125,24 @@
     }
 }
 
-/*body {
-    
-    font-family: 'Lato', sans-serif;
-}*/
-
-.contcarousel {
+.contCarousel {
     box-sizing: border-box;
     scrollbar-color: transparent transparent;
     scrollbar-width: 0px;
-    max-width: 37.5rem;
+    max-width: 22.8rem;
     margin: 0 auto;
     padding: 0 1.25rem;
+    transform: translate(0, 210%);
+    -ms-overflow-style: none;
 }
 
-.contcarousel::-webkit-scrollbar-track {
+.contCarousel::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.contcarousel::-webkit-scrollbar-thumb {
+.contCarousel::-webkit-scrollbar-thumb {
     background: transparent;
     border: none;
-}
-
-.contcarousel {
-    -ms-overflow-style: none;
 }
 
 ol,
@@ -157,14 +152,14 @@ li {
     padding: 0;
 }
 
-.carousel {
+.contCarousel .carousel {
     position: relative;
-    padding-top: 75%;
+    padding-top: 63%;
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
 }
 
-.carousel__viewport {
+.contCarousel .carousel .carouselViewport {
     position: absolute;
     top: 0;
     right: 0;
@@ -177,20 +172,19 @@ li {
     scroll-snap-type: x mandatory;
 }
 
-.carousel__slide {
+.contCarousel .carousel .carouselViewport .carouselSlide {
     position: relative;
     flex: 0 0 100%;
     width: 100%;
-   background-image: url(../multimedia/thumb-1920-1151249.jpg);
+    background-image: url(../multimedia/thumb-1920-1151249.jpg);
     counter-increment: item;
 }
 
-.carousel__slide:nth-child(1) {
+.contCarousel .carousel .carouselViewport .carouselSlide:nth-child(1) {
     background-image: url(../multimedia/439636.jpg);
 }
 
-.carousel__slide:before {
-    content: counter(item);
+.contCarousel .carousel .carouselViewport .carouselSlide:before {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -199,7 +193,7 @@ li {
     font-size: 2em;
 }
 
-.carousel__snapper {
+.contCarousel .carousel .carouselViewport .carouselSlide .carouselArrows {
     position: absolute;
     top: 0;
     left: 0;
@@ -209,73 +203,53 @@ li {
 }
 
 @media (hover: hover) {
-    .carousel__snapper {
+    .contCarousel .carousel .carouselViewport .carouselSlide .carouselArrows {
         animation-name: tonext, snap;
         animation-timing-function: ease;
         animation-duration: 4s;
         animation-iteration-count: infinite;
     }
 
-    .carousel__slide:last-child .carousel__snapper {
+    .contCarousel .carousel .carouselViewport .carouselSlide:last-child .carouselArrows {
         animation-name: tostart, snap;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .carousel__snapper {
-        animation-name: none;
-    }
-}
-
-.carousel:hover .carousel__snapper,
-.carousel:focus-within .carousel__snapper {
+.contCarousel .carousel:hover .carouselViewport .carouselSlide .carouselArrows,
+.contCarousel .carousel:focus-within .carouselViewport .carouselSlide .carouselArrows {
     animation-name: none;
 }
 
-.carousel::before,
-.carousel::after,
-.carousel__prev,
-.carousel__next {
+.contCarousel .carousel::before,
+.contCarousel .carouselPrev {
+    left: -1rem;
+}
+
+.contCarousel .carousel::after,
+.contCarousel .carouselNext {
+    right: -1rem;
+}
+
+.contCarousel .carousel::before,
+.contCarousel .carousel::after,
+.contCarousel .carouselPrev,
+.contCarousel .carouselNext {
     position: absolute;
     top: 0;
-    margin-top: 37.5%;
+    margin-top: 35%;
     width: 4rem;
     height: 4rem;
     transform: translateY(-50%);
     border-radius: 50%;
-    font-size: 0;
+    font-size: 0px;
     outline: 0;
-}
-
-.carousel::before,
-.carousel__prev {
-    left: -1rem;
-}
-
-.carousel::after,
-.carousel__next {
-    right: -1rem;
-}
-
-.carousel::before,
-.carousel::after {
     content: '';
     z-index: 1;
-    background-color: #333;
     background-size: 1.5rem 1.5rem;
     background-repeat: no-repeat;
     background-position: center center;
-    color: #fff;
     font-size: 2.5rem;
     line-height: 4rem;
     text-align: center;
     pointer-events: none;
-}
-
-.carousel::before {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
-}
-
-.carousel::after {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
 }

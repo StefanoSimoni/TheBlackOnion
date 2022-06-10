@@ -1,121 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/page1Style.css">
-    <!--<link rel="stylesheet" href="../css/fondo.css">-->
+    <!-- <link rel="stylesheet" href="../css/fondo.css"> -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="icon" href="../multimedia/4000_4_10 [Convertido].png">
     <title>TheBlackOnion</title>
 </head>
+
 <body>
-    <!--<div id='stars'></div>
+    <div id="content">
+        <div class="searcher">
+            <input type="text" class="searchBox" placeholder="Busca un videojuego">
+            <a class="searchButton" href="#">
+                <i class='bx bx-search'></i>
+            </a>
+        </div>
+        <div class="logo">
+            <img class="logo" src="../multimedia/logo.png">
+        </div>
+        <div class="gameList">
+            <select class="games" name="games">
+                <option value="0" selected>Lista de videojuegos</option>
+            </select>
+        </div>
+
+        <div class="contCarousel">
+            <section class="carousel" aria-label="gallery">
+                <ol class="carouselViewport">
+                    <li id="carouselSlide1" tabindex="0" class="carouselSlide">
+                        <div class="carouselArrows">
+                            <a href="#carouselSlide4" class="carouselPrev">
+                                <i class='bx bxs-chevron-left'></i>
+                            </a>
+                            <a href="#carouselSlide2" class="carouselNext">
+                                <i class='bx bxs-chevron-right'></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li id="carouselSlide2" tabindex="0" class="carouselSlide">
+                        <div class="carouselArrows"></div>
+                        <a href="#carouselSlide1" class="carouselPrev">
+                            <i class='bx bxs-chevron-left'></i>
+                        </a>
+                        <a href="#carouselSlide3" class="carouselNext">
+                            <i class='bx bxs-chevron-right'></i>
+                        </a>
+                    </li>
+                    <li id="carouselSlide3" tabindex="0" class="carouselSlide">
+                        <div class="carouselArrows"></div>
+                        <a href="#carouselSlide2" class="carouselPrev">
+                            <i class='bx bxs-chevron-left'></i>
+                        </a>
+                        <a href="#carouselSlide4" class="carouselNext">
+                            <i class='bx bxs-chevron-right'></i>
+                        </a>
+                    </li>
+                    <li id="carouselSlide4" tabindex="0" class="carouselSlide">
+                        <div class="carouselArrows"></div>
+                        <a href="#carouselSlide3" class="carouselPrev">
+                            <i class='bx bxs-chevron-left'></i>
+                        </a>
+                        <a href="#carouselSlide1" class="carouselNext">
+                            <i class='bx bxs-chevron-right'></i>
+                        </a>
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </div>
+    <div id='stars'></div>
     <div id='stars2'></div>
-    <div id='stars3'></div>-->
-
-    <div class = "searcher">
-        <input type="text" class="searchBox" placeholder="Busca un videojuego">
-        <a class="searchButton" href="#">
-            <i class='bx bx-search'></i>
-        </a>
-    </div>
-    <div class="logo">
-        <img class="logo" src="../multimedia/logo.png">
-    </div>
-    <div class="gameList">
-        <select class="games" name="games">
-            <option value="0" selected>Lista de videojuegos</option>
-        </select>
-    </div>
-
-    <!--<div class="conteinerSlider" id="conteinerSlider">
-        <div class="slider" id="slider1">
-            <div class="image">
-                <img class="img" src="../multimedia/thumb-1920-1151249.jpg">
-            </div>
-            <div class="arrows">
-                <a href="#slider3">
-                    <i class='bx bxs-chevron-left' ></i>
-                </a>
-                <a href="#slider2">
-                    <i class='bx bxs-chevron-right'></i>
-                </a>
-            </div>
-        </div>
-        <div class="slider" id="slider2">
-            <div class="image">
-                <img class="img" src="../multimedia/439636.jpg">
-            </div>
-            <div class="arrows">
-                <a href="#slider1">
-                    <i class='bx bxs-chevron-left' ></i>
-                </a>
-                <a href="#slider3">
-                    <i class='bx bxs-chevron-right'></i>
-                </a>
-            </div>
-        </div>
-        <div class="slider" id="slider3">
-            <div class="image">
-                <img class="img" src="../multimedia/439636.jpg">
-            </div>
-            <div class="arrows">
-                <a href="#slider2">
-                    <i class='bx bxs-chevron-left' ></i>
-                </a>
-                <a href="#slider1">
-                    <i class='bx bxs-chevron-right'></i>
-                </a>
-            </div>
-        </div>
-    </div>-->
-
-    <div class="contcarousel">
-        <section class="carousel" aria-label="Gallery">
-            <ol class="carousel__viewport">
-            <li id="carousel__slide1"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper">
-                <a href="#carousel__slide4"
-                    class="carousel__prev">Go to last slide</a>
-                <a href="#carousel__slide2"
-                    class="carousel__next">Go to next slide</a>
-                </div>
-            </li>
-            <li id="carousel__slide2"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide1"
-                class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide3"
-                class="carousel__next">Go to next slide</a>
-            </li>
-            <li id="carousel__slide3"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide2"
-                class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide4"
-                class="carousel__next">Go to next slide</a>
-            </li>
-            <li id="carousel__slide4"
-                tabindex="0"
-                class="carousel__slide">
-                <div class="carousel__snapper"></div>
-                <a href="#carousel__slide3"
-                class="carousel__prev">Go to previous slide</a>
-                <a href="#carousel__slide1"
-                class="carousel__next">Go to first slide</a>
-            </li>
-            </ol>
-        </section>
-    </div>
+    <div id='stars3'></div>
     <script src="../js/page1.js"></script>
 </body>
+
 </html>
