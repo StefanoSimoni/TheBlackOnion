@@ -1,7 +1,7 @@
 <template>
   <div class="searchButton">
     <input type="text" class="input" placeholder="Buscar Videojuego" />
-    <i class="bx bx-search"></i>
+    <i class="bx bx-search" @click="$router.push('configure')"></i>
   </div>
 </template>
 
