@@ -1,24 +1,23 @@
 <template>
   <div class="frame">
     <div class="content">
-      <SearchItem />
-      <img src="./../assets/a.jpg" />
+      <ChartItem />
       <SlidersItem />
-      <button class="simularButton" @click="$router.push('simulated')">
-        Simular rendimiento
-      </button>
+      <button class="simularButton">Descargar</button>
     </div>
+    <div class="light-top"></div>
+    <div class="light-bot"></div>
   </div>
 </template>
 
 <script>
-import SearchItem from "@/components/Search-Item.vue";
 import SlidersItem from "@/components/Sliders-Item.vue";
+import ChartItem from "@/components/Chart-Item.vue";
 export default {
-  name: "Configure-View",
+  name: "Simulated-View",
   components: {
-    SearchItem,
     SlidersItem,
+    ChartItem,
   },
 };
 </script>
@@ -55,15 +54,6 @@ export default {
   overflow-x: hidden;
 }
 
-.frame img {
-  height: auto;
-  border-color: #7b78aa;
-  border-style: solid;
-  border-radius: 20px;
-  border-width: 0px;
-  box-shadow: 0px 2px 5px 0px #7b78aa;
-}
-
 .frame .simularButton {
   height: 50px;
   border-color: #7b78aa;
@@ -71,5 +61,28 @@ export default {
   border-radius: 30px;
   cursor: pointer;
   border-style: solid;
+}
+
+.frame .light-top {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+
+  background: rgba(13, 166, 194, 0.6);
+  filter: blur(150px);
+}
+
+.frame .light-bot {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 50%;
+  top: 75%;
+  background: rgba(13, 166, 194, 0.6);
+  filter: blur(150px);
+  transform: translate(-50%, -50%);
 }
 </style>
