@@ -18,6 +18,7 @@
       <button
         class="buttonConfigure"
         type="button"
+         @click="$router.push('configureBuild')"
       >
         Configura tu PC
       </button>
