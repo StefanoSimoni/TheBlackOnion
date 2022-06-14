@@ -70,7 +70,6 @@ export default {
   left: 50%;
   top: 25%;
   transform: translate(-50%, -50%);
-
   background: rgba(13, 166, 194, 0.6);
   filter: blur(150px);
 }
