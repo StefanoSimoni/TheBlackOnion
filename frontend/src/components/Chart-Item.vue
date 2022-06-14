@@ -74,10 +74,10 @@ export default {
   data() {
     return {
       chartData: {
-        labels: ["Eating", "Drinking", "Sleeping", "Designing"],
+        labels: ["CPU", "GPU", "RAM", "DISK"],
         datasets: [
           {
-            label: "My First dataset",
+            label: "Configuración recomendada",
             backgroundColor: "rgba(0,181,198,0.2)",
             borderColor: "rgba(0,255,198,1)",
             pointBackgroundColor: "rgba(0,255,198,1)",
@@ -87,7 +87,7 @@ export default {
             data: [65, 59, 90, 181],
           },
           {
-            label: "My Second dataset",
+            label: "Tu configuración",
             backgroundColor: "rgba(255,99,132,0.2)",
             borderColor: "rgba(255,99,132,1)",
             pointBackgroundColor: "rgba(255,99,132,1)",

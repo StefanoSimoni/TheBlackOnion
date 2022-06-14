@@ -5,6 +5,7 @@ import Home from "@/views/Home-View.vue";
 import Configure from "@/views/Configure-View.vue";
 import Simulated from "@/views/Simulated-View.vue";
 import ConfigureBuild from "@/views/ConfigureBuild-View.vue";
+import SimulateBuild from "@/views/SimulateBuild-View.vue";
 
 const routes = [
   {
@@ -27,7 +28,11 @@ const routes = [
     name: "ConfigureBuild",
     component: ConfigureBuild,
   },
-
+  {
+    path: "/simulateBuild",
+    name: "SimulateBuild",
+    component: SimulateBuild,
+  },
 ];
 
 const router = createRouter({

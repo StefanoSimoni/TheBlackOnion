@@ -4,7 +4,7 @@
     <div class="content">
       <h1>Arma tu Configuración</h1>
       <SlidersItem />
-      <button class="simularButton">
+      <button class="simularButton" @click="$router.push('simulateBuild')">
         Simular rendimiento
       </button>
     </div>
