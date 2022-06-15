@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/database.js'
 
-export const Gpu = sequelize.define(
-  'gpu',
+const Gpu = sequelize.define(
+  'gpus',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,3 +23,5 @@ export const Gpu = sequelize.define(
     timestamps: false,
   }
 )
+
+export default Gpu

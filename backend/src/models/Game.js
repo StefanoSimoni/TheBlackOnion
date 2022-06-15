@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/database.js'
 
-export const Game = sequelize.define(
-  'game',
+const Game = sequelize.define(
+  'games',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -26,3 +26,5 @@ export const Game = sequelize.define(
     timestamps: false,
   }
 )
+
+export default Game

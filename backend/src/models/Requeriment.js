@@ -1,11 +1,11 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/database.js'
-import { Game } from './Game.js'
-import { Cpu } from './Cpu.js'
-import { Gpu } from './Gpu.js'
+import Game from './Game.js'
+import Cpu from './Cpu.js'
+import Gpu from './Gpu.js'
 
-export const Requeriment = sequelize.define(
-  'requeriment',
+const Requeriment = sequelize.define(
+  'requeriments',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,49 +28,29 @@ export const Requeriment = sequelize.define(
 )
 
 // Game Relationship
-Requeriment.hasOne(Game, {
-  foreignKey: 'game_id',
-  sourceKey: 'id',
-})
-Game.belongsTo(Requeriment, {
+Requeriment.belongsTo(Game, {
   foreignKey: 'game_id',
   sourceKey: 'id',
 })
 
 // Cpu Relationship
-Requeriment.hasOne(Cpu, {
+Requeriment.belongsTo(Cpu, {
   foreignKey: 'cpu1_id',
   sourceKey: 'id',
 })
-Cpu.belongsTo(Requeriment, {
-  foreignKey: 'cpu1_id',
-  sourceKey: 'id',
-})
-
-Requeriment.hasOne(Cpu, {
-  foreignKey: 'cpu2_id',
-  sourceKey: 'id',
-})
-Cpu.belongsTo(Requeriment, {
+Requeriment.belongsTo(Cpu, {
   foreignKey: 'cpu2_id',
   sourceKey: 'id',
 })
 
-// Gpu Relationship
-Requeriment.hasOne(Gpu, {
-  foreignKey: 'gpu1_id',
-  sourceKey: 'id',
-})
-Cpu.belongsTo(Requeriment, {
+Requeriment.belongsTo(Gpu, {
   foreignKey: 'gpu1_id',
   sourceKey: 'id',
 })
 
-Requeriment.hasOne(Gpu, {
+Requeriment.belongsTo(Gpu, {
   foreignKey: 'gpu2_id',
   sourceKey: 'id',
 })
-Cpu.belongsTo(Requeriment, {
-  foreignKey: 'gpu2_id',
-  sourceKey: 'id',
-})
+
+export default Requeriment

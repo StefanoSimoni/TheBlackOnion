@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/database.js'
 
-export const Cpu = sequelize.define(
-  'cpu',
+const Cpu = sequelize.define(
+  'cpus',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,3 +23,5 @@ export const Cpu = sequelize.define(
     timestamps: false,
   }
 )
+
+export default Cpu
