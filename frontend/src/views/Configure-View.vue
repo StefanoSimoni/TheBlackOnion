@@ -10,8 +10,8 @@
         </div>
       </div>
       <img :src="this.game.url" />
-      <SlidersItem :cpu11="cpu11" :gpu11="gpu11" :cpu="cpuName" :gpu="gpuName" />
-      <button class="simularButton" @click="$router.push('simulated')">
+      <SlidersItem :cpu11="cpu11" :gpu11="gpu11" :gameid=game.id ref="slider"/>
+      <button class="simularButton" @click="goSignal()">
         Simular rendimiento
       </button>
     </div>
@@ -40,10 +40,8 @@ export default {
       name: "",
       cpu: 0,
       cpuIndex: 0,
-      cpuName: "",
       gpu: 0,
       gpuIndex: 0,
-      gpuName: "",
       men: 0,
       ssd: false,
     },
@@ -55,7 +53,12 @@ export default {
     }
     }
   },
-  props: ['id'],
+  props: {
+    id: {
+      type: Number,
+      default: 3
+    }
+  },
   created(){
     this.$watch(
       () => this.$router.params,
@@ -66,7 +69,6 @@ export default {
     )
   },
   methods:{
-
     async fetchData() {
       fetch(`http://localhost:4000/game/${this.id}`)
         .then(response => response.json())
@@ -108,18 +110,17 @@ export default {
               this.cpu11.push(this.cpu[this.cpuIndex + index])
               this.gpu11.push(this.gpu[this.gpuIndex + index])
             }
-            this.cpuName = this.cpu[this.cpuIndex].name
-            this.gpuName = this.gpu[this.gpuIndex].name
             //console.log([this.game.cpu, this.game.gpu, this.game.men, this.game.ssd, this.cpu11, this.gpu11])
           })
-
-
     },
     onChangeSelect(event){
       this.selectGame = this.games.find(item => item.name === event.target.value);
     },
-    goSimulated(){
-      this.$router.push({name:'ConfigureBuild', params: {id: this.selectGame}});
+    goConfigure(){
+      this.$router.push({name:'Configure', params: { id: this.selectGame.id}});
+    },
+    goSignal(){
+      this.$refs.slider.goSimuData();
     },
   }
 };

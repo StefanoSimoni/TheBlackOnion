@@ -42,6 +42,9 @@ export default {
     Radar,
   },
   props: {
+    newDataSet:{
+      type: String,
+    },
     chartId: {
       type: String,
       default: "radar-chart",
@@ -87,7 +90,7 @@ export default {
             data: [65, 59, 90, 181],
           },
           {
-            label: "Tu configuración",
+            label: "Tu Ejemplo",
             backgroundColor: "rgba(255,99,132,0.2)",
             borderColor: "rgba(255,99,132,1)",
             pointBackgroundColor: "rgba(255,99,132,1)",
@@ -129,6 +132,20 @@ export default {
       },
     };
   },
+  created(){
+    this.$watch(
+      () => this.$router.params,
+      () => {
+        this.fetchData()
+      },
+      {immediate: true}
+    )
+  },
+  methods:{
+    fetchData() {
+      this.chartData.datasets = JSON.parse(this.newDataSet)
+    }
+  }
 };
 </script>
 

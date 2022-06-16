@@ -1,7 +1,7 @@
 <template>
   <div class="frame">
     <div class="content">
-      <ChartItem />
+      <ChartItem :newDataSet="newDataSet" ref="refresh"/>
       <SlidersItem />
       <button class="simularButton">`Volver</button>
     </div>
@@ -19,7 +19,45 @@ export default {
     SlidersItem,
     ChartItem,
   },
-};
+  data(){
+    return {
+      newDataSet: ""
+    }
+  },
+  created(){
+    this.$watch(
+      () => this.$router.params,
+      () => {
+        this.fetchData()
+      },
+      {immediate: true}
+    )
+  },
+  methods:{
+    async fetchData() {
+      //console.log(JSON.parse(this.simudata))
+      fetch("http://localhost:4000/simgame",
+        {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: this.simudata
+        }
+      )
+      .then(response => response.json())
+        .then(json => {
+          this.newDataSet = JSON.stringify(json)
+          })
+    }
+  },
+  props: {
+    simudata: {
+      type: String
+    }
+  }
+}
 </script>
 
 <style scoped>

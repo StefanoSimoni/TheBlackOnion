@@ -71,7 +71,7 @@ export default {
       this.goConfigure()
     },
     goConfigure(){
-      this.$router.push({name:'Configure', params: { id: this.selectGame['id']}});
+      this.$router.push({name:'Configure', params: { id: this.selectGame.id}});
     },
     goConfigureBuild(){
       this.$router.push({name:'ConfigureBuild', params: {id: this.selectGame}});

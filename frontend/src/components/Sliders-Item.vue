@@ -13,7 +13,9 @@
 
 <script>
 export default {
-  data: () => ({
+  data(){
+    return{
+      simuData: {},
       displayCpu: "CPU:",
       displayGpu: "GPU:",
       displayRAM: "RAM:",
@@ -24,15 +26,32 @@ export default {
         cpu: 0,
         gpu: 0,
         men: 0,
-        disk: false,
+        disk: true,
       },
-  }),
-  props: ['cpu11', 'gpu11', 'cpuName', 'gpuName'],
-  beforeMount(){
-      this.displayCpu = "CPU:" + this.cpuName
-      this.displayGpu = "GPU:" + this.gpuName
+    }
+  },
+  props: {
+    cpu11: {
+      type: Array,
+      default: () => [],
+    },
+    gpu11: {
+      type: Array,
+      default: () => [],
+    },
+    gameid: {
+      type: Number,
+      default: 3
+    }
   },
   methods:{
+    goSimuData(){
+      if(this.user.cpu === 0){this.user.cpu = this.cpu11[3].id }
+      if(this.user.gpu === 0){this.user.gpu = this.gpu11[3].id }
+      if(this.user.men === 0){this.user.men = this.ram[3] }
+      this.simuData =  JSON.stringify({gameid: this.gameid, cpu: this.user.cpu, gpu: this.user.gpu, ram: this.user.men, ssd: this.user.disk});
+      this.$router.push({name:'Simulated', params: { simudata: this.simuData}});
+    },
     onChangeCPU(event){
       this.displayCpu = "CPU: " + this.cpu11[event.target.value].name
       this.user.cpu = this.cpu11[event.target.value].id
@@ -43,7 +62,7 @@ export default {
     },
     onChangeRAM(event){
       this.displayRAM = "RAM: " + this.ram[event.target.value]
-      this.user.ram = this.ram[event.target.value]
+      this.user.men = this.ram[event.target.value]
     },
     onChangeDISK(event){
       this.displayDisk = this.disk[event.target.value]
