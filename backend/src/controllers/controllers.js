@@ -233,9 +233,9 @@ export const postSimGame = async (req, res) => {
     let valorSsd
 
     if (ssd === true && ssd === minSsd && ssd === midSsd) {
-      valorSsd = 1
+      valorSsd = 10
     } else if (ssd === true && ssd === midSsd) {
-      valorSsd = 0.5
+      valorSsd = 5
     } else {
       valorSsd = 0
     }

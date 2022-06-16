@@ -118,6 +118,9 @@ export default {
             ticks: {
               color: "white",
               backdropColor: "rgba(255, 255, 255, 0)",
+              min: 0,
+              max: 10,
+              stepSize: 2,
             },
           },
         },
@@ -143,6 +146,7 @@ export default {
   },
   methods:{
     fetchData() {
+      console.log(JSON.parse(this.newDataSet))
       this.chartData.datasets = JSON.parse(this.newDataSet)
     }
   }

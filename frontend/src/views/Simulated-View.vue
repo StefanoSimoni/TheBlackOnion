@@ -3,7 +3,7 @@
     <div class="content">
       <ChartItem :newDataSet="newDataSet" ref="refresh"/>
       <SlidersItem />
-      <button class="simularButton">`Volver</button>
+      <button class="simularButton" @click="goHome()">`Volver</button>
     </div>
     <div class="light-top"></div>
     <div class="light-bot"></div>
@@ -21,7 +21,7 @@ export default {
   },
   data(){
     return {
-      newDataSet: ""
+      newDataSet: []
     }
   },
   created(){
@@ -34,6 +34,9 @@ export default {
     )
   },
   methods:{
+    goHome(){
+      this.$router.push({name:'Home'});
+    },
     async fetchData() {
       //console.log(JSON.parse(this.simudata))
       fetch("http://localhost:4000/simgame",
@@ -49,6 +52,7 @@ export default {
       .then(response => response.json())
         .then(json => {
           this.newDataSet = JSON.stringify(json)
+
           })
     }
   },
