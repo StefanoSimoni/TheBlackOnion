@@ -39,8 +39,10 @@ export const getDefault = async (req, res) => {
     description: 'REST API for Gamer page',
     Endpoints: {
       Games: {
+        '/game/:gameid': 'List a game',
         '/games': 'List all games',
         '/games5': 'List 5 games for carousel',
+        '/games30': 'List 30 games for simulated',
       },
       Cpus: {
         '/cpus': 'List all cpu',
@@ -49,7 +51,7 @@ export const getDefault = async (req, res) => {
         '/gpus': 'List all gpu',
       },
       Requeriments: {
-        '/requeriment/:gameid': 'Requeriments of a game',
+        '/requirement/:gameid': 'Requeriments of a game',
       },
       Simulate: {
         '/simgame': 'Simulate user configuration vs game requirement',
@@ -57,6 +59,19 @@ export const getDefault = async (req, res) => {
       },
     },
   })
+}
+
+export const getGame = async (req, res) => {
+  const { gameid } = req.params
+  try {
+    const response = await Game.findOne({
+      attributes: ['id', 'name', 'year', 'rating', 'url'],
+      where: { id: gameid },
+    })
+    res.json(response)
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
 }
 
 export const getGames = async (req, res) => {
@@ -88,11 +103,24 @@ export const getG5 = async (req, res) => {
   }
 }
 
+export const getG30 = async (req, res) => {
+  try {
+    const response = await Game.findAll({
+      attributes: ['id', 'name', 'year', 'rating', 'url'],
+      order: [['id', 'ASC']],
+      limit : 30,
+    })
+    res.json(response)
+  } catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+}
+
 export const getCpus = async (req, res) => {
   try {
     const response = await Cpu.findAll({
       attributes: ['id', 'name', 'brand', 'score'],
-      order: [['id', 'asc']],
+      order: [['score', 'asc']],
     })
     res.json(response)
   } catch (error) {
@@ -104,7 +132,7 @@ export const getGpus = async (req, res) => {
   try {
     const response = await Gpu.findAll({
       attributes: ['id', 'name', 'brand', 'score'],
-      order: [['id', 'asc']],
+      order: [['score', 'asc']],
     })
     res.json(response)
   } catch (error) {

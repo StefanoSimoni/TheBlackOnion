@@ -1,4 +1,5 @@
 import express, { json } from 'express'
+import cors from 'cors'
 import morgan from 'morgan'
 
 // import files
@@ -13,6 +14,7 @@ app.set('port', config.PORT)
 
 // middlewares
 app.use(morgan('dev'))
+app.use(cors())
 app.use(json())
 
 // routes

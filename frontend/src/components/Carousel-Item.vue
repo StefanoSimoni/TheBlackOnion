@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel">
+  <div class="carousel" >
     <div class="carousel-inner">
       <carousel-indicators
         v-if="indicators"
@@ -12,6 +12,7 @@
         :slide="slide"
         :key="`item-${index}`"
         :current-slide="currentSlide"
+        :sliderIndex="sliderIndex"
         :index="index"
         :direction="direction"
         @mouseenter="stopSlideTimer"
@@ -34,6 +35,10 @@ import CarouselIndicators from "./Carousel-Indicators.vue";
 export default {
   props: {
     slides: {
+      type: Array,
+      required: true,
+    },
+    sliderIndex: {
       type: Array,
       required: true,
     },

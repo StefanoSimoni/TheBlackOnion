@@ -2,15 +2,16 @@
   <div class="frame">
     <LogoItem />
     <div class="searchContent">
-      <SearchItem />
+      <SearchItem :games="games" />
       <div class="gameList">
-        <select>
-          <option selected disabled hidden>Seleccionar Videojuego</option>
-          <option>League of Legends</option>
+        <select v-model="selectGame" @change="onChangeSelect($event)">
+          <option value="" disabled hidden>Seleccionar Videojuego</option>
+          <option v-for="game in games" :key="game.id">{{ game.name }}</option>
         </select>
       </div>
       <carousel
         :slides="slides"
+        :sliderIndex="sliderIndex"
         :interval="3000"
         controls
         indicators
@@ -18,7 +19,7 @@
       <button
         class="buttonConfigure"
         type="button"
-         @click="$router.push('configureBuild')"
+        @click="goConfigureBuild()"
       >
         Configura tu PC
       </button>
@@ -37,15 +38,45 @@ export default {
     SearchItem,
     Carousel,
   },
+  created(){
+    fetch("http://localhost:4000/games5")
+      .then(response => response.json())
+      .then(json => {
+        this.slides.push(json[0].url);
+        this.sliderIndex.push(json[0].id);
+        this.slides.push(json[1].url);
+        this.sliderIndex.push(json[1].id);
+        this.slides.push(json[2].url);
+        this.sliderIndex.push(json[2].id);
+        this.slides.push(json[3].url);
+        this.sliderIndex.push(json[3].id);
+        this.slides.push(json[4].url);
+        this.sliderIndex.push(json[4].id);
+        });
+    fetch("http://localhost:4000/games30")
+      .then(response => response.json())
+      .then(json => {
+        this.games = this.games.concat(json);
+        })
+  },
   data: () => ({
-    slides: [
-      "https://picsum.photos/id/1032/900/400",
-      "https://picsum.photos/id/1033/900/400",
-      "https://picsum.photos/id/1037/900/400",
-      "https://picsum.photos/id/1035/900/400",
-      "https://picsum.photos/id/1036/900/400",
-    ],
+    slides: [],
+    sliderIndex: [],
+    games: [],
+    selectGame: "",
   }),
+  methods:{
+    onChangeSelect(event){
+      this.selectGame = this.games.find(item => item.name === event.target.value);
+      this.goConfigure()
+    },
+    goConfigure(){
+      this.$router.push({name:'Configure', params: { id: this.selectGame['id']}});
+    },
+    goConfigureBuild(){
+      this.$router.push({name:'ConfigureBuild', params: {id: this.selectGame}});
+    },
+  },
 };
 </script>
 

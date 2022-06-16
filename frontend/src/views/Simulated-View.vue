@@ -3,7 +3,7 @@
     <div class="content">
       <ChartItem />
       <SlidersItem />
-      <button class="simularButton">Descargar</button>
+      <button class="simularButton">`Volver</button>
     </div>
     <div class="light-top"></div>
     <div class="light-bot"></div>

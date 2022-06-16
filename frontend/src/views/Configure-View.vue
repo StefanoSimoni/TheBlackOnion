@@ -1,9 +1,16 @@
 <template>
   <div class="frame">
     <div class="content">
-      <SearchItem />
-      <img src="./../assets/a.jpg" />
-      <SlidersItem />
+      <div class="searchContent">
+        <div class="gameList">
+          <select v-model="selectGame" @change="onChangeSelect($event)">
+            <option value="" disabled hidden>Seleccionar Videojuego</option>
+            <option v-for="game in games" :key="game.id">{{ game.name }}</option>
+          </select>
+        </div>
+      </div>
+      <img :src="this.game.url" />
+      <SlidersItem :cpu11="cpu11" :gpu11="gpu11" :cpu="cpuName" :gpu="gpuName" />
       <button class="simularButton" @click="$router.push('simulated')">
         Simular rendimiento
       </button>
@@ -12,14 +19,109 @@
 </template>
 
 <script>
-import SearchItem from "@/components/Search-Item.vue";
 import SlidersItem from "@/components/Sliders-Item.vue";
 export default {
   name: "Configure-View",
   components: {
-    SearchItem,
     SlidersItem,
   },
+  data(){
+    return {
+    games: [],
+    selectGame: "",
+    cpu: [],
+    gpu: [],
+    cpu11: [],
+    gpu11: [],
+    ram: [1, 2, 4, 8, 16, 32, 64],
+    game: {
+      id: 0,
+      url: "",
+      name: "",
+      cpu: 0,
+      cpuIndex: 0,
+      cpuName: "",
+      gpu: 0,
+      gpuIndex: 0,
+      gpuName: "",
+      men: 0,
+      ssd: false,
+    },
+    user: {
+      cpu: 0,
+      gpu: 0,
+      men: 0,
+      ssd: false,
+    }
+    }
+  },
+  props: ['id'],
+  created(){
+    this.$watch(
+      () => this.$router.params,
+      () => {
+        this.fetchData()
+      },
+      {immediate: true}
+    )
+  },
+  methods:{
+
+    async fetchData() {
+      fetch(`http://localhost:4000/game/${this.id}`)
+        .then(response => response.json())
+        .then(json => {
+          this.game.id = json.id
+          this.game.url = json.url
+          this.game.name = json.name
+          })
+      fetch("http://localhost:4000/games30")
+        .then(response => response.json())
+        .then(json => {
+          this.games = this.games.concat(json);
+          //console.log(this.games)
+          })
+      fetch("http://localhost:4000/cpus")
+        .then(response => response.json())
+        .then(json => {
+          this.cpu = this.cpu.concat(json);
+          //console.log(this.cpu)
+          })
+      fetch("http://localhost:4000/gpus")
+        .then(response => response.json())
+        .then(json => {
+          this.gpu = this.gpu.concat(json);
+          //console.log(this.gpu)
+          })
+      fetch(`http://localhost:4000/requeriment/${this.id}`)
+        .then(response => response.json())
+          .then(json => {
+            this.game.cpu = json[1].cpu1_id
+            this.game.gpu = json[1].gpu1_id
+            this.game.men = json[1].men
+            this.game.ssd = json[1].ssd
+            //console.log(this.game.cpu, this.game.gpu)
+            this.cpuIndex = this.cpu.map(e => e.id).indexOf(this.game.cpu);
+            this.gpuIndex = this.gpu.map(e => e.id).indexOf(this.game.gpu);
+            //console.log(this.cpuIndex, this.gpuIndex)
+            for (let index = -3; index < 4; index++) {
+              this.cpu11.push(this.cpu[this.cpuIndex + index])
+              this.gpu11.push(this.gpu[this.gpuIndex + index])
+            }
+            this.cpuName = this.cpu[this.cpuIndex].name
+            this.gpuName = this.gpu[this.gpuIndex].name
+            //console.log([this.game.cpu, this.game.gpu, this.game.men, this.game.ssd, this.cpu11, this.gpu11])
+          })
+
+
+    },
+    onChangeSelect(event){
+      this.selectGame = this.games.find(item => item.name === event.target.value);
+    },
+    goSimulated(){
+      this.$router.push({name:'ConfigureBuild', params: {id: this.selectGame}});
+    },
+  }
 };
 </script>
 
@@ -55,13 +157,52 @@ export default {
   overflow-x: hidden;
 }
 
-.frame img {
+.frame .content .searchContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
   height: auto;
+}
+
+.frame .content .searchContent .gameList {
+  position: relative;
+  height: auto;
+}
+
+.frame .content .searchContent .gameList select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  height: 50px;
+  text-indent: 20px;
+  border-radius: 30px;
+  border-color: #7b78aa;
+  background-color: #262450;
+  border-style: solid;
+  border-width: 2px;
+  font-size: medium;
+}
+
+.frame .content .searchContent .gameList::after {
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid;
+  position: absolute;
+  right: 19px;
+  top: 22px;
+  content: "";
+}
+
+.frame img {
+  height: 250px;
   border-color: #7b78aa;
   border-style: solid;
   border-radius: 20px;
   border-width: 0px;
   box-shadow: 0px 2px 5px 0px #7b78aa;
+  object-fit: cover;
 }
 
 .frame .simularButton {

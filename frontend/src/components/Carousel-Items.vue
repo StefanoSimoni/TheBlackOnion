@@ -6,7 +6,7 @@
       @mouseenter="$emit('mouseenter')"
       @mouseout="$emit('mouseout')"
     >
-      <img :src="slide" />
+      <img :src="slide" @click="goConfigure()" />
     </div>
   </transition>
 </template>
@@ -14,10 +14,15 @@
 <script>
 export default {
   emits: ["mouseenter", "mouseout"],
-  props: ["slide", "currentSlide", "index", "direction"],
+  props: ["slide", "currentSlide", "index", "direction", "sliderIndex"],
   computed: {
     transitionEffect() {
       return this.direction === "right" ? "slide-out" : "slide-in";
+    },
+  },
+  methods: {
+    goConfigure(){
+      this.$router.push({name:'Configure', params: {id: this.sliderIndex[this.currentSlide]}});
     },
   },
 };
@@ -33,6 +38,7 @@ export default {
 }
 .carousel-item img {
   object-fit: cover;
+  cursor: pointer;
 }
 .slide-in-enter-active,
 .slide-in-leave-active,

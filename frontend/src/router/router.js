@@ -17,21 +17,25 @@ const routes = [
     path: "/configure",
     name: "Configure",
     component: Configure,
+    props: true,
   },
   {
     path: "/simulated",
     name: "Simulated",
     component: Simulated,
+    props: true,
   },
   {
     path: "/configureBuild",
     name: "ConfigureBuild",
     component: ConfigureBuild,
+    props: true,
   },
   {
     path: "/simulateBuild",
     name: "SimulateBuild",
     component: SimulateBuild,
+    props: true,
   },
 ];
 
